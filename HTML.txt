@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汉诺塔游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="home-screen">
+            <h1>汉诺塔</h1>
+            <div class="setting-item">
+                <label for="diskCount">选择圆盘数量：</label>
+                <select id="diskCount">
+                    <option value="3">3个圆盘</option>
+                    <option value="4">4个圆盘</option>
+                    <option value="5">5个圆盘</option>
+                    <option value="6">6个圆盘</option>
+                    <option value="7">7个圆盘</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="startGame()">开始游戏</button>
+            <button class="btn btn-success" onclick="showHelp()">游戏说明</button>
+        </div>
+    </div>
+
+    <div id="gameScreen" style="display: none;">
+        <div class="game-container">
+            <div class="game-header">
+                <div>步数: <span id="moveCount">0</span></div>
+                <div>最小步数: <span id="minMoves">0</span></div>
+                <button class="btn btn-danger" onclick="goHome()">返回</button>
+            </div>
+            <div class="game-area">
+                <div class="tower" id="tower0">
+                    <div class="peg"></div>
+                    <span class="drop-indicator"></span>
+                </div>
+                <div class="tower" id="tower1">
+                    <div class="peg"></div>
+                    <span class="drop-indicator"></span>
+                </div>
+                <div class="tower" id="tower2">
+                    <div class="peg"></div>
+                    <span class="drop-indicator"></span>
+                </div>
+            </div>
+            <div class="game-controls">
+                <button class="btn btn-primary" onclick="autoSolve()">自动求解</button>
+                <button class="btn btn-success" onclick="resetGame()">重置游戏</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="winModal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <h2>🎉 恭喜你赢了！</h2>
+            <p>你用了 <span id="finalMoves">0</span> 步完成游戏</p>
+            <p>最小步数是: <span id="finalMinMoves">0</span></p>
+            <button class="btn btn-primary" onclick="closeWinModal()">确定</button>
+        </div>
+    </div>
+
+    <div id="helpModal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <h2>游戏说明</h2>
+            <p style="text-align: left; margin: 15px 0;">
+                汉诺塔是一个经典的益智游戏。规则如下：
+            </p>
+            <ul style="text-align: left; margin: 15px 0;">
+                <li>将所有圆盘从左边柱子移到右边柱子</li>
+                <li>每次只能移动一个圆盘</li>
+                <li>大圆盘不能放在小圆盘上面</li>
+            </ul>
+            <p style="text-align: left; margin: 15px 0;">
+                <strong>操作方式：</strong><br>
+                点击选中最上方的圆盘，然后点击目标柱子进行移动。
+            </p>
+            <button class="btn btn-primary" onclick="closeHelpModal()">确定</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
